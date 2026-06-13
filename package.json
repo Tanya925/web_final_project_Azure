@@ -1,0 +1,8 @@
+{
+  "name": "web-final-project-azure",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix myexpressWeb && npm install --prefix vue-web && npm run build --prefix vue-web",
+    "start": "npm --prefix myexpressWeb start"
+  }
+}
