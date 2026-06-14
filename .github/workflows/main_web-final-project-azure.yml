@@ -35,6 +35,11 @@ jobs:
       - name: Install backend dependencies
         run: npm install --prefix myexpressWeb
 
+      - name: Rebuild sqlite3 from source
+        # sqlite3 6.x 會優先下載預編譯 binary；目前抓到的版本要求 GLIBC_2.38，
+        # 但 Azure App Service Linux 上沒有那麼新的 glibc，所以這裡強制在 runner 上從原始碼重編。
+        run: npm rebuild sqlite3 --build-from-source --prefix myexpressWeb
+
       - name: Install frontend dependencies
         run: npm install --prefix vue-web
 
