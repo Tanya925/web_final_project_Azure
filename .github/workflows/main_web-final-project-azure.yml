@@ -11,7 +11,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # sqlite3 會編出與執行環境綁定的原生模組；這裡固定用 ubuntu-22.04，
+    # 避免在比 Azure App Service 更新的 runner 上建置後，因 GLIBC 版本過新而無法在 Azure 啟動。
+    runs-on: ubuntu-22.04
     permissions:
       contents: read
 
@@ -46,7 +48,7 @@ jobs:
           path: .
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: build
     permissions:
       id-token: write
